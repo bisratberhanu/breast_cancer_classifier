@@ -35,7 +35,6 @@ class SimpleLogisticRegression:
         y_predicted = sigmoid(linear_model)
         return np.where(y_predicted >= 0.5, 1, 0)
 
-# Step 1: Load and preprocess the Iris dataset
 iris = load_iris()
 X = iris.data[:, [0, 1]]  # Use only sepal length (0) and sepal width (1)
 y = iris.target
@@ -45,18 +44,16 @@ mask = y < 2  # Exclude class 2 (Iris-virginica)
 X = X[mask]
 y = y[mask]
 
-# Step 2: Split into training and testing sets
+#  Split into training and testing sets
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3, random_state=42)
 
-# Step 3: Train the model
+# Train the model
 model = SimpleLogisticRegression(learning_rate=0.1, num_iterations=1000)
 model.fit(X_train, y_train)
 
-# Step 4: Test the model
 train_pred = model.predict(X_train)
 test_pred = model.predict(X_test)
 
-# Step 5: Evaluate
 train_accuracy = np.mean(train_pred == y_train) * 100
 test_accuracy = np.mean(test_pred == y_test) * 100
 
@@ -65,7 +62,6 @@ print(f"Testing Accuracy: {test_accuracy:.2f}%")
 print("\nTest Predictions:", test_pred)
 print("Actual Test Labels:", y_test)
 
-# Step 6: Predict a new sample
-new_sample = np.array([[5.5, 3.0]])  # Example: sepal length=5.5, sepal width=3.0
+new_sample = np.array([[5.5, 3.0]])  
 new_pred = model.predict(new_sample)
 print(f"\nNew Sample {new_sample} Prediction: {'Versicolor' if new_pred[0] == 1 else 'Setosa'}")
