@@ -19,7 +19,7 @@ This repository showcases four main implementations
 1. A Naive Bayes classifier for medical data.
 2. Django application with a user interface (UI) to interact with the Naive Bayes classifier, making it easy to test predictions.
 3. a custom logistic regression classifier trained from scratch.  
-4. Review of the paper "Bayesian Optimization of Machine Learning Algorithms(found here ).
+4. Review of the paper "Bayesian Optimization of Machine Learning Algorithms.[found here](https://arxiv.org/abs/1206.2944).
 
 A Naive Bayes classifier is a probabilistic machine learning model based on `Bayes theorem`, assuming feature independence, which works well for datasets like medical data where features (e.g., blood pressure, glucose levels) can be treated as conditionally independent given the class (e.g., diabetic or not). This assumption simplifies calculations and is often effective for classification tasks.
 
@@ -249,8 +249,11 @@ Baysian optimization empolyes a probabilistic model to model the objective funct
 The algorithm follows these steps:
 
 **Initialization** - Evaluate a small, random set of hyperparameter configurations.
+
 **Modeling** -  Fit the GP to the observed data, predicting performance across the hyperparameter space.
+
 **Optimization** -  Use the acquisition function to select the next configuration, maximizing expected improvement.
+
 **Iteration** - Update the GP with the new evaluation and repeat until a budget (e.g., time or iterations) is exhausted.
 
 The paper validates the framework through many  experiments
