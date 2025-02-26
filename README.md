@@ -6,6 +6,12 @@ This repository implements a Naive Bayes classifier, a custom logistic regressio
 
 **The naive Bayes classifier is also deployed on render**: https://breast-cancer-classifier.onrender.com
 
+**Demo image**
+
+![alt text](image-10.png)
+
+
+
 - The Naive Bayes classifier uses medical data, suitable for its probabilistic approach, while the logistic regression classifier is trained on the Iris dataset with only two features for simplicity.
 
 ## Introduction
@@ -39,17 +45,26 @@ The Pima Indians Diabetes dataset, collected by the National Institute of Diabet
 ### This features are:
 
 **Pregnancies**: Number of times pregnant.
+
 **Glucose**: Plasma glucose concentration.
+
 **BloodPressure**: Diastolic blood pressure.
+
 **SkinThickness**: Triceps skin fold thickness.
+
 **Insulin**: 2-hour serum insulin.
+
 **BMI**: Body mass index.
+
 **DiabetesPedigreeFunction**: Genetic diabetes risk score.
-**Age**: Age in years. 
+
+**Age**: Age in years.
+
 **The target variable is binary: 0 for non-diabetic, 1 for diabetic.**
 
 ### Data Exploration
 Some stats on the dataset are as follows. 0 means non-diabetic, and 1 means diabetic.
+The python code used to generate these stats is given at
 
 ```
 Feature: Pregnancies
@@ -147,9 +162,9 @@ DiabetesPedigreeFunction: 1.9161592037386292
 Age: 1.127389259531697
 
 ```
-**
+
 The skewness values for the features are: Pregnancies (0.90), Glucose (0.53), BloodPressure (0.14), SkinThickness (1.22), Insulin (2.69), BMI (0.60), DiabetesPedigreeFunction (1.92), and Age (1.13). BloodPressure is approximately symmetric, Glucose and BMI are moderately skewed, Pregnancies is moderately skewed, and SkinThickness, Insulin, DiabetesPedigreeFunction, and Age are highly skewed, indicating significant right tails in their distributions.
-**
+
 
 
 **some images that describe the dataset will be given below** 
@@ -232,7 +247,7 @@ Baysian optimization empolyes a probabilistic model to model the objective funct
 
 The algorithm follows these steps:
 
-**Initializatio** - Evaluate a small, random set of hyperparameter configurations.
+**Initialization** - Evaluate a small, random set of hyperparameter configurations.
 **Modeling** -  Fit the GP to the observed data, predicting performance across the hyperparameter space.
 **Optimization** -  Use the acquisition function to select the next configuration, maximizing expected improvement.
 **Iteration** - Update the GP with the new evaluation and repeat until a budget (e.g., time or iterations) is exhausted.
