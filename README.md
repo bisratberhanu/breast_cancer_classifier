@@ -4,7 +4,7 @@
 
 This repository implements a Naive Bayes classifier, a custom logistic regression classifier, and reviews a paper on Bayesian optimization of machine learning algorithms, including a **Django application with a UI** for the Naive Bayes classifier.
 
-The naive Bayes classifier is also deployed on render: 
+**The naive Bayes classifier is also deployed on render**: https://breast-cancer-classifier.onrender.com
 
 - The Naive Bayes classifier uses medical data, suitable for its probabilistic approach, while the logistic regression classifier is trained on the Iris dataset with only two features for simplicity.
 
@@ -30,7 +30,7 @@ The rest of this Document  is organized as follows:
 3. Paper Review
 
 
-## Naive Bayes Classifier
+## 1. Naive Bayes Classifier
 The Naive Bayes classifier implementation focuses on a medical dataset,  [`the Pima Indians Diabetes dataset`](https://github.com/npradaschnor/Pima-Indians-Diabetes-Dataset), to predict diabetes risk. This section details the dataset, data exploration, and file structure.
 
 ### Dataset Explanation
@@ -92,7 +92,6 @@ Feature: Insulin
 Outcome                                                                
 0        500.0   83.188000   89.565700  15.0  30.5  39.0  105.00  744.0
 1        268.0  116.041045  127.689084  14.0  30.5  30.5  167.25  846.0 ```
-
 
 
 ```
@@ -210,16 +209,38 @@ The logistic regression model is implemented from scratch using NumPy, with:
 ![alt text](image-8.png)
 
 ```
+
 Accuracy and Metrics
 The model achieved:
 
 Training Accuracy: ~98.57%
-Testing Accuracy: 100% ```
+Testing Accuracy: 100% 
+
+```
 
 ![alt text](image-9.png)
 
 
 ## 3.Paper Review
 
+The paper "Practical Bayesian Optimization of machine learning algorithms" was published in 2012. This paper address the challenge hyperparameter optimization in machine learning. In this summery of the paper, we will try to see the challenges this paper addresses, the methodology and techniques used and finally some experimental results
+
+Hyperparameter tuning or optimization is a well known issue in machine learning.It is tweeking the hyperparameters of the model so that best result is achieved.currently there are two common approachs, The first one is to bruteforce some known values in order to find the best hyperparameters in some defined values that are set by the model developer. This method is known as grid search. The second method is called random search, where the hyperparameters are randomly selected from a defined range. Both these appraoches are not efficient and are computationally expensive.There for the paper proposes a new method called Bayesian optimization.
 
 
+Baysian optimization empolyes a probabilistic model to model the objective function and then uses the model to select the next hyperparameters to evaluate. The model is updated as new hyperparameters are evaluated. The optimization algorithm uses a helper model called Guassian Process to predict the next hyperparameters to evaluate. This function is based on observed data points.The GP provides a probabilistic prediction, including mean and uncertainty, which an acquisition function uses to decide the next hyperparameter configuration to evaluate. The Expected Improvement (EI) acquisition function is highlighted, balancing exploration of uncertain regions and exploitation of promising ones. 
+
+The algorithm follows these steps:
+
+**Initializatio** - Evaluate a small, random set of hyperparameter configurations.
+**Modeling** -  Fit the GP to the observed data, predicting performance across the hyperparameter space.
+**Optimization** -  Use the acquisition function to select the next configuration, maximizing expected improvement.
+**Iteration** - Update the GP with the new evaluation and repeat until a budget (e.g., time or iterations) is exhausted.
+
+The paper validates the framework through many  experiments
+
+**Deep Neural Networks**: On a convolutional neural network for image classification, it outperformed random search and manual tuning, achieving lower error rates in fewer iterations (e.g., ~10-20 vs. hundreds).
+
+**Latent Dirichlet Allocation (LDA):** Optimized hyperparameters for topic modeling, reducing perplexity significantly faster than baselines.
+
+**Benchmarks:** Compared against grid search, random search, and expert tuning, showing consistent improvements in efficiency and performance.
