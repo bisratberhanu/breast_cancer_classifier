@@ -64,7 +64,8 @@ The Pima Indians Diabetes dataset, collected by the National Institute of Diabet
 
 ### Data Exploration
 Some stats on the dataset are as follows. 0 means non-diabetic, and 1 means diabetic.
-The python code used to generate these stats is given at
+
+The python code used to generate these stats is given at `evaluation_graph.py` in predictor folder
 
 ```
 Feature: Pregnancies
