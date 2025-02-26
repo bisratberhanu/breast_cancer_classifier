@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Diabetes Prediction</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            margin: 0;
+            padding: 20px;
+            color: #333;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            animation: fadeIn 1s ease-in;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        h1 {
+            text-align: center;
+            color: #2c3e50;
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+        .header-desc {
+            text-align: center;
+            font-size: 1.1em;
+            color: #7f8c8d;
+            margin-bottom: 30px;
+            font-style: italic;
+        }
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        .input-group {
+            background: #ecf0f1;
+            padding: 15px;
+            border-radius: 10px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .input-group:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        label {
+            font-weight: bold;
+            color: #2980b9;
+            display: block;
+            margin-bottom: 5px;
+            cursor: pointer;
+        }
+        input[type="number"] {
+            width: 100%;
+            padding: 10px;
+            border: 2px solid #bdc3c7;
+            border-radius: 5px;
+            font-size: 1em;
+            transition: border-color 0.3s ease;
+        }
+        input[type="number"]:focus {
+            border-color: #3498db;
+            outline: none;
+        }
+        .description {
+            font-size: 0.9em;
+            color: #7f8c8d;
+            margin-top: 5px;
+        }
+        button {
+            background: #e74c3c;
+            color: white;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 25px;
+            font-size: 1.2em;
+            cursor: pointer;
+            transition: background 0.3s ease, transform 0.2s ease;
+            align-self: center;
+        }
+        button:hover {
+            background: #c0392b;
+            transform: scale(1.05);
+        }
+        h2 {
+            text-align: center;
+            color: #27ae60;
+            margin-top: 30px;
+            font-size: 1.8em;
+            animation: slideIn 0.5s ease;
+        }
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateX(-20px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Diabetes Prediction</h1>
+        <div class="header-desc">
+            This tool uses the Pima Indians Diabetes Dataset, collected by the National Institute of Diabetes and Digestive and Kidney Diseases, to predict diabetes risk based on medical data from Pima Indian women near Phoenix, Arizona.
+        </div>
+
+        <form method="POST">
+            {% csrf_token %}
+            <div class="input-group">
+                <label for="Pregnancies">Pregnancies:</label>
+                <input type="number" name="Pregnancies" min="0" required value="{{ form_data.Pregnancies|default:'' }}">
+                <div class="description">Number of times pregnant. Higher numbers may indicate increased physiological stress linked to diabetes risk.</div>
+            </div>
+
+            <div class="input-group">
+                <label for="Glucose">Glucose:</label>
+                <input type="number" name="Glucose" min="0" required value="{{ form_data.Glucose|default:'' }}">
+                <div class="description">Plasma glucose concentration (mg/dL) from a 2-hour oral glucose tolerance test. Elevated levels are a key diabetes indicator.</div>
+            </div>
+
+            <div class="input-group">
+                <label for="BloodPressure">Blood Pressure:</label>
+                <input type="number" name="BloodPressure" min="0" required value="{{ form_data.BloodPressure|default:'' }}">
+                <div class="description">Diastolic blood pressure (mm Hg). Abnormal pressure can signal cardiovascular issues tied to diabetes.</div>
+            </div>
+
+            <div class="input-group">
+                <label for="SkinThickness">Skin Thickness:</label>
+                <input type="number" name="SkinThickness" min="0" required value="{{ form_data.SkinThickness|default:'' }}">
+                <div class="description">Triceps skinfold thickness (mm). A measure of body fat; higher values might correlate with insulin resistance.</div>
+            </div>
+
+            <div class="input-group">
+                <label for="Insulin">Insulin:</label>
+                <input type="number" name="Insulin" min="0" required value="{{ form_data.Insulin|default:'' }}">
+                <div class="description">2-hour serum insulin (mu U/ml). Low or high levels can reflect insulin production issues in diabetes.</div>
+            </div>
+
+            <div class="input-group">
+                <label for="BMI">BMI:</label>
+                <input type="number" name="BMI" step="any" min="0" required value="{{ form_data.BMI|default:'' }}">
+                <div class="description">Body Mass Index (weight in kg / (height in m)^2). Obesity (high BMI) is a major diabetes risk factor.</div>
+            </div>
+
+            <div class="input-group">
+                <label for="DiabetesPedigreeFunction">Diabetes Pedigree Function:</label>
+                <input type="number" name="DiabetesPedigreeFunction" step="any" min="0" required value="{{ form_data.DiabetesPedigreeFunction|default:'' }}">
+                <div class="description">A score estimating genetic diabetes risk based on family history. Higher values suggest stronger hereditary influence.</div>
+            </div>
+
+            <div class="input-group">
+                <label for="Age">Age:</label>
+                <input type="number" name="Age" min="0" required value="{{ form_data.Age|default:'' }}">
+                <div class="description">Age in years. Diabetes risk increases with age, especially past 45.</div>
+            </div>
+
+            <button type="submit">Predict</button>
+        </form>
+
+        {% if prediction %}
+        <h2>Prediction: {{ prediction }}</h2>
+        {% endif %}
+    </div>
+</body>
+</html>
