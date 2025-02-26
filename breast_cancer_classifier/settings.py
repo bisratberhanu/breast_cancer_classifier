@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure--shac(c$on88x#9ua4m)!lh$gf++w0#5iv)@a(7f#+3tyl15dj
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['localhost', '127.0.0.1', 'breast-cancer-classifier.onrender.com']
 
 
 # Application definition
